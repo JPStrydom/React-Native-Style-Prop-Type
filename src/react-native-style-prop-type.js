@@ -29,3 +29,10 @@ module.exports = (props, propName, componentName) => {
     return error;
   }
 };
+
+module.exports.isRequired = (props, propName, componentName) => {
+  if (!props[propName]) {
+    return new Error('Prop ' + propName + ' passed to ' + componentName + ' is required');
+  }
+  return module.exports(props, propName, componentName);
+};

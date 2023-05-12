@@ -1,6 +1,6 @@
 const ReactNativeStylePropType = require('./react-native-style-prop-type');
 
-describe('When using the "ReactNativeStylePropType" prop type', () => {
+describe('When validation with the "ReactNativeStylePropType" prop type', () => {
   const mockStylePropName = 'mockStyleProp';
   const mockComponentName = 'MockComponent';
   const mockValidReactStyle = {
@@ -54,6 +54,28 @@ describe('When using the "ReactNativeStylePropType" prop type', () => {
         );
       });
     });
+
+    describe('when the prop is required', () => {
+      describe('and the prop is provided', () => {
+        it('should not return an error', () => {
+          const mockProps = { [mockStylePropName]: mockValidReactStyle };
+          expect(
+            ReactNativeStylePropType.isRequired(mockProps, mockStylePropName, mockComponentName)
+          ).toBeUndefined();
+        });
+      });
+
+      describe('and the prop is not provided', () => {
+        it('should return an error', () => {
+          const mockProps = {};
+          expect(
+            ReactNativeStylePropType.isRequired(mockProps, mockStylePropName, mockComponentName)
+          ).toEqual(
+            new Error(`Prop ${mockStylePropName} passed to ${mockComponentName} is required`)
+          );
+        });
+      });
+    });
   });
 
   describe('when validating a style prop list', () => {
@@ -105,6 +127,34 @@ describe('When using the "ReactNativeStylePropType" prop type', () => {
             `Prop ${mockStylePropName} passed to ${mockComponentName}. Has invalid keys invalidStyleName, anotherInvalidStyleName`
           )
         );
+      });
+    });
+
+    describe('when the prop is required', () => {
+      describe('and the prop is provided', () => {
+        it('should not return an error', () => {
+          const mockProps = {
+            [mockStylePropName]: [
+              mockValidReactStyle,
+              { ...mockValidReactStyle, flexDirection: 'row' },
+              { ...mockValidReactStyle, display: 'flex' }
+            ]
+          };
+          expect(
+            ReactNativeStylePropType.isRequired(mockProps, mockStylePropName, mockComponentName)
+          ).toBeUndefined();
+        });
+      });
+
+      describe('and the prop is not provided', () => {
+        it('should return an error', () => {
+          const mockProps = {};
+          expect(
+            ReactNativeStylePropType.isRequired(mockProps, mockStylePropName, mockComponentName)
+          ).toEqual(
+            new Error(`Prop ${mockStylePropName} passed to ${mockComponentName} is required`)
+          );
+        });
       });
     });
   });
