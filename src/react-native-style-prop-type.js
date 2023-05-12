@@ -19,6 +19,9 @@ const getReactCssProperties = style =>
   );
 
 module.exports = (props, propName, componentName) => {
+  if (!props[propName]) {
+    return;
+  }
   try {
     return ReactStylePropType(
       { [propName]: getReactCssProperties(props[propName]) },
@@ -32,7 +35,7 @@ module.exports = (props, propName, componentName) => {
 
 module.exports.isRequired = (props, propName, componentName) => {
   if (!props[propName]) {
-    return new Error('Prop ' + propName + ' passed to ' + componentName + ' is required');
+    return new Error(`Prop ${propName} passed to ${componentName} is required`);
   }
   return module.exports(props, propName, componentName);
 };

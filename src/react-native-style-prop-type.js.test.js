@@ -18,7 +18,7 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
   };
 
   describe('when validating a style prop object', () => {
-    describe('with valid react css properties', () => {
+    describe('with valid react style properties', () => {
       it('should not return an error', () => {
         const mockProps = { [mockStylePropName]: mockValidReactStyle };
         expect(
@@ -27,7 +27,7 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
       });
     });
 
-    describe('with valid react-native css properties', () => {
+    describe('with valid react-native style properties', () => {
       it('should not return an error', () => {
         const mockProps = {
           [mockStylePropName]: { ...mockValidReactStyle, ...mockValidReactNativeStyle }
@@ -38,7 +38,7 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
       });
     });
 
-    describe('with invalid css properties', () => {
+    describe('with invalid style properties', () => {
       it('should return an error', () => {
         const mockProps = {
           [mockStylePropName]: {
@@ -52,6 +52,15 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
             `Prop ${mockStylePropName} passed to ${mockComponentName}. Has invalid keys invalidStyleName`
           )
         );
+      });
+    });
+
+    describe('with no style properties', () => {
+      it('should not return an error', () => {
+        const mockProps = {};
+        expect(
+          ReactNativeStylePropType(mockProps, mockStylePropName, mockComponentName)
+        ).toBeUndefined();
       });
     });
 
@@ -79,7 +88,7 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
   });
 
   describe('when validating a style prop list', () => {
-    describe('with valid react css properties', () => {
+    describe('with valid react style properties', () => {
       it('should not return an error', () => {
         const mockProps = {
           [mockStylePropName]: [
@@ -93,7 +102,7 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
       });
     });
 
-    describe('with valid react-native css properties', () => {
+    describe('with valid react-native style properties', () => {
       it('should not return an error', () => {
         const mockProps = {
           [mockStylePropName]: [
@@ -108,7 +117,7 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
       });
     });
 
-    describe('with invalid css properties', () => {
+    describe('with invalid style properties', () => {
       it('should return an error', () => {
         const mockProps = {
           [mockStylePropName]: [
@@ -127,6 +136,15 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
             `Prop ${mockStylePropName} passed to ${mockComponentName}. Has invalid keys invalidStyleName, anotherInvalidStyleName`
           )
         );
+      });
+    });
+
+    describe('with no style properties', () => {
+      it('should not return an error', () => {
+        const mockProps = {};
+        expect(
+          ReactNativeStylePropType(mockProps, mockStylePropName, mockComponentName)
+        ).toBeUndefined();
       });
     });
 
