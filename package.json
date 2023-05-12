@@ -1,6 +1,6 @@
 {
   "name": "react-native-style-prop-type",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A React PropType for React Native styles",
   "keywords": [
     "React",
@@ -15,6 +15,10 @@
     {
       "name": "Jordan Muller",
       "email": "jordan.muller@entelect.co.za"
+    },
+    {
+      "name": "Frankie Bagnardi",
+      "email": "f.bagnardi@gmail.com"
     }
   ],
   "repository": {
