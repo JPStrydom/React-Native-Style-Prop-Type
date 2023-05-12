@@ -1,0 +1,31 @@
+const ReactStylePropType = require('react-style-proptype');
+
+const validReactNativeStyleProps = [
+  'gap',
+  'marginHorizontal',
+  'marginVertical',
+  'paddingHorizontal',
+  'paddingVertical'
+];
+
+const flattenStyles = styles =>
+  Array.isArray(styles) ? styles.reduce((result, style) => ({ ...result, ...style })) : styles;
+
+const getReactCssProperties = style =>
+  Object.fromEntries(
+    Object.entries(flattenStyles(style)).filter(
+      ([key]) => !validReactNativeStyleProps.includes(key)
+    )
+  );
+
+module.exports = (props, propName, componentName) => {
+  try {
+    return ReactStylePropType(
+      { [propName]: getReactCssProperties(props[propName]) },
+      propName,
+      componentName
+    );
+  } catch (error) {
+    return error;
+  }
+};
