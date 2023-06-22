@@ -1,6 +1,7 @@
 const ReactStylePropType = require('react-style-proptype');
 
 const validReactNativeStyleProps = [
+  'aspectRatio',
   'gap',
   'marginHorizontal',
   'marginVertical',

@@ -107,8 +107,13 @@ describe('When validation with the "ReactNativeStylePropType" prop type', () => 
         const mockProps = {
           [mockStylePropName]: [
             { ...mockValidReactStyle, ...mockValidReactNativeStyle },
-            { ...mockValidReactStyle, ...mockValidReactNativeStyle, paddingVertical: 20 },
-            { ...mockValidReactStyle, gap: 20 }
+            {
+              ...mockValidReactStyle,
+              ...mockValidReactNativeStyle,
+              paddingVertical: 20,
+              marginHorizontal: 20
+            },
+            { ...mockValidReactStyle, gap: 20, aspectRatio: 1 }
           ]
         };
         expect(
