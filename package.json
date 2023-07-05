@@ -29,7 +29,7 @@
     "url": "https://github.com/JPStrydom/React-Native-Style-Prop-Type/issues"
   },
   "homepage": "https://github.com/JPStrydom/React-Native-Style-Prop-Type#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "src/react-native-style-prop-type.js",
   "scripts": {
     "lint": "eslint \"./**/*.js\" --fix",
